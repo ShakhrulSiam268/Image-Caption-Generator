@@ -7,7 +7,7 @@ class Vocabulary:
         self.itos = {0: "<PAD>", 1: "<SOS>", 2: "<EOS>", 3: "<UNK>"}
         self.stoi = {v: k for k, v in self.itos.items()}
         self.freq_threshold = threshold
-        spacy.cli.download("en_core_web_lg")
+        # spacy.cli.download("en_core_web_lg")
         self.spacy_eng = spacy.load("en_core_web_lg")
 
     def __len__(self):
