@@ -4,14 +4,15 @@ from PIL import Image
 import torch
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
-from captionist.utils import load_train_test_val_data
-from captionist.vocab_builder import Vocabulary
-from captionist.data_util import data_loader_
-from captionist.model import EncoderDecoder
+from generator.utils import load_train_test_val_data
+from generator.vocab_builder import Vocabulary
+from generator.data_util import data_loader_
+from generator.model import EncoderDecoder
 
 
 def save_attention(img_name, result, attention_plot):
     temp_image = Image.open(img_name).convert("RGB")
+
     fig = plt.figure(figsize=(10, 10))
     len_result = len(result)
     for l in range(len_result):
@@ -51,6 +52,7 @@ def load_model(parameters):
         'vocab_size': len(vocab)
     }
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cpu")
     model = EncoderDecoder(
         parameter_dict=parameter_dict,
         device=device).to(device=device)
